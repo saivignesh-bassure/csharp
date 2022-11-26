@@ -1,0 +1,5 @@
+public static IEnumerable<string> BestHands(IEnumerable<string> hands) =>
+    hands.ToLookup(HandScore).MaxBy(g => g.Key);
+
+private static int HandScore(string hand) =>
+    Math.Max(Parser.ParseHand(hand).Score, Parser.ParseHand(hand.Replace('A', '1')).Score);
